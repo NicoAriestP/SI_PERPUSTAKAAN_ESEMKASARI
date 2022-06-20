@@ -1,0 +1,246 @@
+<?php
+	error_reporting(0);
+    session_start();
+    
+    $koneksi = new mysqli("localhost","root","","perpus_db");
+
+    include "function.php";
+
+    if($_SESSION['admin'] || $_SESSION['user']){
+
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HALAMAN UTAMA</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link href="assets/dataTables/datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+    <style>
+      .dropdown-item {
+        color: white;
+        text-align: center;
+      }
+      .dropdown-item:hover {
+        background-color: white;
+      }
+      .navbar {
+        padding: 0px;
+      }
+      nav ul li a:hover {
+        background-color: #333;
+        color: black;
+      }
+      nav ul li {
+        margin-top: 10px;
+      }
+      div.dataTables_wrapper div.dataTables_filter {
+        text-align: right;
+        margin-right: 120px;
+      }
+      .dataTables_length {
+        margin-right: 120px;
+      }
+      div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        margin: 2px 0;
+        white-space: nowrap;
+        float: right;
+        margin-right: 120px;
+      }
+      #datatables_previous {
+        border: 1px solid black;
+      }
+      #datatables_next {
+        border: 1px solid black;
+      }
+      li.paginate_button.active {
+        border: 1px solid black;
+      }
+      h1 a {
+        margin-left: 20px;
+      }
+      h2 {
+        border-bottom: 1px solid black;
+      }
+      @media (max-width: 500px) {
+        .sosmed {
+          background-color: green;
+        }
+      }
+    
+    </style>
+  </head>
+  <body style="background-color: black; color: black">
+    <div id="wrapper" style="background-color: #333">
+      <div class="header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1">
+        <div class="sosmed" style="padding: 0.1px">
+          <div class="container">
+            <ul>
+              <li>
+                <a href="https://m.facebook.com/SMKN-Purwosari-172753320078781/"><i class="fab fa-facebook"></i></a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/channel/UCc0mMPRw6sMiKy_gpDSP20g"><i class="fab fa-youtube"></i></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/galeri_smknpurwosari"><i class="fab fa-instagram"></i></a>
+              </li>
+              <li>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <h1>
+          <a href="index.php">PERPUSTAKAAN ESEMKASARI</a>
+          <div class="logout" style="color: white; padding: 5px 50px 5px 50px; float: right; font-size: 16px">
+            <?php date_default_timezone_set('Asia/Jakarta'); echo date('d-M-Y H:i:s'); ?>
+            &nbsp; <a onclick="return confirm('Anda ingin keluar?')" href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a>
+          </div>
+        </h1>
+
+        <marquee style="background-color: red; margin-bottom: 1px; color: white; letter-spacing: 20px; padding: 1px"><strong>SATU HATI MENUJU PRESTASI</strong></marquee>
+      </div>
+      <div class="content" style="margin-top: 110px; margin-bottom: 50px">
+        <nav style="display: flex; float: left; text-align: center" class="navbar bg-black">
+          <ul class="navbar-nav" style="color: white; width: 200px; background-color: black">
+            <div class="logo" style="background-color: #333">
+              <img style="width: 100px; float: left; margin-left: 50px" src="img/smklogo.png" />
+            </div>
+            <li class="nav-item"><a class="nav-link" href="index.php">DASHBOARD</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">DATA MASTER</a>
+              <ul style="padding: 0px; background-color: black; color: white" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li style="color: white"><a class="dropdown-item" href="?page=buku">DATA BUKU</a></li>
+                <li><a class="dropdown-item" href="?page=anggota">DATA SISWA</a></li>
+                <?php if ($_SESSION['admin']) {?>
+                <li><a class="dropdown-item" href="?page=transaksi">DATA PEMINJAMAN</a></li>
+                <li><a class="dropdown-item" href="?page=pengguna">DATA PENGGUNA</a></li>
+                <?php } ?>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="?page=kontak">KONTAK</a></li>
+            <?php if ($_SESSION['admin']) {?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">LAPORAN</a>
+              <ul style="padding: 0px; background-color: black" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="?page=buku&aksi=cetak">LAPORAN BUKU</a></li>
+                <li><a class="dropdown-item" href="?page=anggota&aksi=cetak">LAPORAN ANGGOTA</a></li>
+                <li><a class="dropdown-item" href="?page=transaksi&aksi=cetak">LAPORAN PEMINJAMAN</a></li>
+                <li><a class="dropdown-item" href="?page=transaksi&aksi=bukti">BUKTI PEMINJAMAN</a></li>
+              </ul>
+            </li>
+            <?php } ?>
+          </ul>
+        </nav>
+        <!--PAGE-->
+        <div id="page-wrapper">
+          <div id="page-inner" style="">
+            <div class="row" style="margin-top: -2px; min-height: 800px">
+              <div class="col-md-12" style="background-color: #fff; color: black">
+                <?php
+
+                     		$page = $_GET['page'];
+                     		$aksi = $_GET['aksi'];
+
+
+                     		if ($page == "buku") {
+                     			if ($aksi == "") {
+                     				include "page/buku/buku.php";
+                     			}elseif ($aksi== "tambah") {
+                                    include "page/buku/tambah.php";
+                                }elseif ($aksi== "ubah") {
+                                    include "page/buku/ubah.php";
+                                }elseif ($aksi== "hapus") {
+                                    include "page/buku/hapus.php";
+                                }elseif ($aksi== "cetak") {
+                                    include "page/buku/form_laporan_buku.php";
+                                }elseif ($aksi== "cari")   {
+                                    include "page/buku/cari_buku.php";
+                                }
+                     		}elseif ($page == "lokasi" ) {
+                                if ($aksi == "") {
+                                    include "page/lokasi/lokasi.php";
+                                }elseif ($aksi == "tambah") {
+                                    include "page/lokasi/tambah.php";
+                                }elseif ($aksi == "ubah") {
+                                    include "page/lokasi/ubah.php";
+                                }elseif ($aksi == "hapus") {
+                                    include "page/lokasi/hapus.php";
+                                }
+                            }elseif ($page == "anggota" ) {
+                     			if ($aksi == "") {
+                     				include "page/anggota/anggota.php";
+                     			}elseif ($aksi == "tambah") {
+                                    include "page/anggota/tambah.php";
+                                }elseif ($aksi == "ubah") {
+                                    include "page/anggota/ubah.php";
+                                }elseif ($aksi == "hapus") {
+                                    include "page/anggota/hapus.php";
+                                }elseif ($aksi == "cetak") {
+                                    include "page/anggota/form_laporan_anggota.php";
+                                }
+                                 
+                                
+                     		}elseif ($page == "transaksi" ) {
+                     			if ($aksi == "") {
+                     				include "page/transaksi/transaksi.php";
+                     			}elseif ($aksi == "tambah") {
+                                    include "page/transaksi/tambah.php";
+                                }elseif ($aksi == "kembali") {
+                                    include "page/transaksi/kembali.php";
+                                }elseif ($aksi == "perpanjang") {
+                                    include "page/transaksi/perpanjang.php";
+                                }elseif ($aksi == "cetak") {
+                                    include "page/transaksi/form_laporan_transaksi.php";
+                                }elseif ($aksi == "bukti") {
+                                    include "page/transaksi/buktipeminjaman.php";
+                                }
+                     		}elseif ($page == "pengguna" ) {
+                                if ($aksi == "") {
+                                    include "page/pengguna/pengguna.php";
+                                }elseif ($aksi == "tambah") {
+                                    include "page/pengguna/tambah.php";
+                                }elseif ($aksi == "ubah") {
+                                    include "page/pengguna/ubah.php";
+                                }elseif ($aksi == "hapus") {
+                                    include "page/pengguna/hapus.php";
+                                }
+                            }elseif ($page=="") {
+                                include "home.php";
+                            }elseif ($page=="kontak") {
+                                if ($aksi == "") {
+                                    include "page/kontak/kontak.php";
+                                }
+                            }
+                            
+                     	?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer style="padding: 15px 0; position: fixed; display: flex; bottom: 0; z-index: 1; right: 0; left: 0; justify-content: center; align-items: center">
+        <center><small>Copyright &copy;2021-Kelompok1.All Rights Reserved.</small></center>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/dataTables/datatables.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#datatables").DataTable();
+      });
+    </script>
+  </body>
+</html>
+<?php
+    }else{
+        header("location:login.php");
+    }
+?>

@@ -1,0 +1,264 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+#wrapper {
+  width: 100%;
+  background-color: lightskyblue;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.sosmed {
+  padding:0.1px;
+  background-color: #c00;
+}
+.marquee {
+  background-color: #c00; margin-bottom: 1px; color: white; letter-spacing: 20px; padding: 1px;
+}
+.sosmed ul li {
+  display: inline;
+  color: white;
+  margin-right: 10px;
+}
+.title {
+  color: white;
+  font-size: 35px;
+}
+.waktu {
+  color: white;
+  padding: 5px 50px 5px 50px;
+  font-size: 16px;
+  float: right;
+}
+h1 {
+  color: white;
+  background-color: #333;
+  z-index: 1;
+  text-decoration: none;
+}
+h1 a {
+        margin-left: 20px;
+}
+div.dataTables_wrapper div.dataTables_filter {
+        text-align: right;
+        margin-right: 1vw;
+      }
+nav {
+  display: flex;
+  float: left;
+  text-align: center;
+}
+.menu {
+  display: flex;
+  float: left;
+  margin-left: 10px;
+  margin-top: -4px;
+}
+.menu ul li {
+  padding: 10px;
+  list-style: none;
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 10px;
+  width: 175px;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  
+  padding-top: 50px;
+}
+.close {
+  position: absolute;
+  right: 10px;
+  top: 1px;
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+}
+
+.close:hover,
+.close:focus {
+  color: #c00;
+  cursor: pointer;
+}
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  z-index: 2;
+  margin-top: 425px;
+}
+
+.welcome {
+  float: right;
+}
+#datatables_previous {
+  border-radius: 4px;
+  border: 1px solid black;
+  color: white;
+  background-color: darkblue;
+  padding: 5px;
+}
+#datatables_previous:hover {
+  background-color: blue;
+}
+.paginate_button {
+  border: 1px solid black;
+  border-radius: 4px;
+  color: white;
+  background-color: darkblue;
+  padding: 5px;
+}
+.paginate_button:hover {
+  background-color: blue;
+}
+.paginate_button.active {
+  border: 1px solid black;
+  border-radius: 4px;
+  color: white;
+  background-color: lightskyblue;
+  padding: 5px;
+}
+.paginate_button.active:hover {
+  background-color: blue;
+}
+#datatables_next {
+  border: 1px solid black;
+  
+  color: white;
+  padding: 5px;
+  background-color: darkblue;
+}
+#datatables_next:hover {
+  background-color: blue;
+}
+
+.btn.btn-default {
+  background-color: darkgreen;
+  margin-top: 4px;
+  color: white;
+}
+.btn.btn-default:hover {
+  color: white;
+  background-color: green;
+}
+ul.navbar-nav {
+  color: white; width: 200px; background-color: black;margin-bottom: 10px;
+}
+.waktu {
+  color: white;padding:5px 50px 5px 50px; font-size: 16px;float:right;
+}
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1;
+}
+.content {
+  margin-top: 110px;margin-bottom: 50px;
+}
+.dashbord{
+  width:20%;
+  display: inline-block;
+  background-color:#34495E;
+  color:#fff;
+  margin-top: 20px;
+  margin-left: 7%;
+  margin-right: 5%; 
+  margin-bottom: 3%;
+}
+.icon-section i{
+  font-size: 30px;
+  padding:10px;
+  border:1px solid #fff;
+  border-radius:50%;
+  margin-top:-25px;
+  margin-bottom: 10px;
+  background-color:#34495E;
+}
+.icon-section p{
+  margin:0px;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.detail-section{
+  background-color: #2F4254;
+  padding: 5px 0px;
+}
+.dashbord .detail-section:hover{
+  background-color: #5a5a5a;
+  cursor: pointer;
+}
+.detail-section a{
+  color:#fff;
+  text-decoration: none;
+}
+.dashbord-green .icon-section,.dashbord-green .icon-section i{
+  background-color: #16A085;
+}
+.dashbord-green .detail-section{
+  background-color: #149077;
+}
+.dashbord-orange .icon-section,.dashbord-orange .icon-section i{
+  background-color: #F39C12;
+}
+.dashbord-orange .detail-section{
+  background-color: #DA8C10;
+}
+.dashbord-blue .icon-section,.dashbord-blue .icon-section i{
+  background-color: #2980B9;
+}
+.dashbord-blue .detail-section{
+  background-color:#2573A6;
+}
+.dashbord-red .icon-section,.dashbord-red .icon-section i{
+  background-color:#E74C3C;
+}
+.dashbord-red .detail-section{
+  background-color:#CF4436;
+}
+.dashbord-skyblue .icon-section,.dashbord-skyblue .icon-section i{
+  background-color:#8E44AD;
+}
+.dashbord-skyblue .detail-section{
+  background-color:#803D9B;
+}
+#spin1 {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+/*RESPONSIVE*/
+@media (max-width: 768px) {
+  .sosmed {
+    padding: 0px;
+  }
+  .waktu {
+    padding: 0px 0px;
+    
+  }
+  h1 a{
+    margin-left: 5px;
+  }
+  .logo img {
+    display: none;
+  }
+  .marquee {
+    margin-bottom: 3px;
+    
+  }
+  ul.navbar-nav {
+    width: 100vw;
+  }
+  .header {
+    position: unset;
+  }
+  .content {
+    margin-top: 0px;
+  }
+}
